@@ -1,13 +1,11 @@
-
-package ru.netolgy;
+package ru.netology;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
 
-class MobileBankApiTestV5 {
+class MobileBankApiTestV2 {
     @Test
     void shouldReturnDemoAccounts() {
         // Given - When - Then
@@ -20,8 +18,9 @@ class MobileBankApiTestV5 {
                 // Проверки
                 .then()
                 .statusCode(200)
+                .header("Content-Type", "application/json; charset=UTF-8")
+                // специализированные проверки - лучше
                 .contentType(ContentType.JSON)
-                .body("every{ it.balance >= 0 }", is(true))
         ;
     }
 }
